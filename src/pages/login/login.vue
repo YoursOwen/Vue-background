@@ -1,15 +1,18 @@
 <template>
   <div class="login-container">
-    <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-  <el-form-item label="名称">
-    <el-input v-model="formLabelAlign.name"></el-input>
-  </el-form-item>
-  <el-form-item label="活动区域">
-    <el-input v-model="formLabelAlign.region"></el-input>
-  </el-form-item>
-  <el-form-item label="活动形式">
-    <el-input v-model="formLabelAlign.type"></el-input>
-  </el-form-item>
+    <el-form ref="form" :model="form" class="container" >
+      <el-form-item>
+    <div class="avatar">
+      <img src="@/assets/avatar.jpg" alt="">
+    </div>
+    </el-form-item>
+     <el-form-item>
+      <el-input v-model="formLabelAlign.name" placeholder="账号" prefix-icon="el-icon-search"></el-input>
+     </el-form-item>
+     <el-form-item>
+      <el-input v-model="formLabelAlign.region" placeholder="密码" prefix-icon='el-icon-star-on'></el-input>
+     </el-form-item>
+    <el-button type="primary" size="medium">主要按钮</el-button>
 </el-form>
   </div>
 </template>
@@ -21,8 +24,7 @@
         labelPosition: 'right',
         formLabelAlign: {
           name: '',
-          region: '',
-          type: ''
+          region: ''
         }
       };
     }
@@ -31,10 +33,45 @@
 
 
 <style lang="less" scoped>
+
   .login-container{
     position:fixed;
     width: 100%;
     height: 100%;
     background-color: #2f4050;
+    .container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 400px;
+    padding: 0px 40px 15px 40px;
+    margin: 200px auto;
+    background: white;
+    }
+    .el-form{
+      margin: 150px auto;
+      padding: 0 2.5rem;
+      width: 25rem;
+      height: 15.625rem;
+      background-color: #fff;
+      text-align: center;
+
+      .el-input{
+        width: 100%;
+      }
+    }
+    .avatar {
+      position: relative;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      margin-left: -60px;
+      margin-top: -60px;
+      box-sizing: border-box;
+      border-radius: 50%;
+      border: 10px solid #fff;
+      box-shadow: 0 1px 5px #ccc;
+      overflow: hidden;
+    }
   }
 </style>
