@@ -4,6 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import '@/style/index.less'
+
+import element from '@/element/index.js'
+Vue.use(element)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
