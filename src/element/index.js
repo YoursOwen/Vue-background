@@ -1,5 +1,6 @@
+import Vue from 'vue'
 import { Select, Option, OptionGroup, Input, Tree, Dialog, Row, Col,Form,
-  FormItem, Button } from 'element-ui'
+  FormItem, Button,Message,MessageBox} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 const element = {
@@ -15,8 +16,12 @@ const element = {
     Vue.use(Form)
     Vue.use(FormItem)
     Vue.use(Button)
+    Vue.component(Message)
+    Vue.component(MessageBox)
+
   }
 }
+Vue.prototype.$message = Message;
 export default element
 
 //在babelrc中官方文档的引入只需要引入下面的component，上面的es2015不需要引入（引入会报错）

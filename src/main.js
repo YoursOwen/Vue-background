@@ -6,7 +6,7 @@ import router from './router'
 
 import '@/style/index.less'
 
-import element from '@/element/index.js'
+import element from '@/element/index'
 Vue.use(element)
 
 Vue.config.productionTip = false

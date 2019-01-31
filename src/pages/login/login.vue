@@ -7,33 +7,57 @@
     </div>
     </el-form-item>
      <el-form-item>
-      <el-input v-model="formLabelAlign.name" placeholder="账号" prefix-icon="el-icon-search"></el-input>
+      <el-input v-model="form.username" placeholder="账号" prefix-icon="el-icon-search"></el-input>
      </el-form-item>
      <el-form-item>
-      <el-input v-model="formLabelAlign.region" placeholder="密码" prefix-icon='el-icon-star-on'></el-input>
+      <el-input type="password" v-model="form.password" placeholder="密码" prefix-icon='el-icon-star-on'></el-input>
      </el-form-item>
-    <el-button type="primary" size="medium">主要按钮</el-button>
+    <el-button type="primary" size="medium" @click="login">登陆</el-button>
 </el-form>
   </div>
 </template>
 
 <script>
+import {postLoginHandler} from '@/api/index.js'
   export default {
     data() {
       return {
-        labelPosition: 'right',
-        formLabelAlign: {
-          name: '',
-          region: ''
+        form: {
+          username:"",
+          password:""
         }
       };
+    },
+    methods: {
+      login() {
+        if(this.form.username.trim() === "" || this.form.password.trim() ==="") return this.open3()
+
+        postLoginHandler(this.form).then(res => {
+          if(res.status === 200) {
+            //将token存储到localStorage
+            localStorage.setItem("token",res.data.token)
+            //登陆成功
+            this.$router.push("home")
+          }else {
+             this.$message({
+          showClose: true,
+          message: res.data.errMsg,
+          type: 'error'
+        });
+          }
+        })
+      },
+      open3() {
+        this.$message({
+          message: '警告哦，这是一条警告消息',
+          type: 'warning'
+        });
+      },
     }
   }
 </script>
 
-
 <style lang="less" scoped>
-
   .login-container{
     position:fixed;
     width: 100%;
@@ -56,7 +80,7 @@
       background-color: #fff;
       text-align: center;
 
-      .el-input{
+      .el-button{
         width: 100%;
       }
     }
@@ -74,4 +98,4 @@
       overflow: hidden;
     }
   }
-</style>
+  </style>
