@@ -1,6 +1,6 @@
 import axios from "axios"
 
-axios.defaults.baseURL = 'http://litc.pro:9999/v1'
+axios.defaults.baseURL = 'http://localhost:8888/api/private/v1'
 
 
 // 添加请求拦截器
@@ -19,7 +19,7 @@ axios.interceptors.request.use(function (config) {
 
 
 export const postLoginHandler = params => {
-  return axios.post("/users/login",params)
+  return axios.post("login",params)
          .then(response => response.data)
          .catch(error => error.response)
 }

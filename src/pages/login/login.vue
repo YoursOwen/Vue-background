@@ -10,7 +10,7 @@
       <el-input v-model="form.username" placeholder="账号" prefix-icon="el-icon-search"></el-input>
      </el-form-item>
      <el-form-item>
-      <el-input type="password" v-model="form.password" placeholder="密码" prefix-icon='el-icon-star-on'></el-input>
+      <el-input type="password" v-model="form.password" placeholder="密码" prefix-icon='el-icon-star-on' @keydown.native.enter="login"></el-input>
      </el-form-item>
     <el-button type="primary" size="medium" @click="login">登陆</el-button>
 </el-form>
@@ -33,7 +33,8 @@ import {postLoginHandler} from '@/api/index.js'
         if(this.form.username.trim() === "" || this.form.password.trim() ==="") return this.open3()
 
         postLoginHandler(this.form).then(res => {
-          if(res.status === 200) {
+          console.log(res)
+          if(res.meta.status === 200) {
             //将token存储到localStorage
             localStorage.setItem("token",res.data.token)
             //登陆成功
@@ -41,7 +42,7 @@ import {postLoginHandler} from '@/api/index.js'
           }else {
              this.$message({
           showClose: true,
-          message: res.data.errMsg,
+          message: res.meta.msg,
           type: 'error'
         });
           }
