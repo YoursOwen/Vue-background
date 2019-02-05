@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { Select, Option, OptionGroup, Input, Tree, Dialog, Row, Col,Form,
-  FormItem, Button,Message,MessageBox} from 'element-ui'
+  FormItem, Button,Message,MessageBox,Container,Header,Aside,Main,Footer,Transfer} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 const element = {
@@ -18,7 +18,12 @@ const element = {
     Vue.use(Button)
     Vue.component(Message)
     Vue.component(MessageBox)
-
+    Vue.component(Container)
+    Vue.component(Header)
+    Vue.component(Aside)
+    Vue.component(Main)
+    Vue.component(Footer)
+    Vue.component(Transfer)
   }
 }
 Vue.prototype.$message = Message;

@@ -6,13 +6,15 @@ import router from './router'
 
 import '@/style/index.less'
 
-import element from '@/element/index'
-Vue.use(element)
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
 
 //启动路由导航守卫
 router.beforeEach((to,from,next)=>{
   let token = localStorage.getItem("token")
-  // console.log(token)
+  console.log(token)
   if(!token && to.path != "/login"){
     return next("/login")
   }
