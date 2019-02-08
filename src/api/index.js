@@ -24,3 +24,9 @@ export const postLoginHandler = params => {
          .catch(error => error.response)
 }
 //在catch方法中通过error.response拿到服务器处理错误的响应
+
+export const getMenusHandler = () => {
+  return axios.get("menus")
+        .then(response => response.data)
+        .catch(error => error.response)
+}
