@@ -11,15 +11,13 @@ Vue.use(ElementUI);
 //启动路由导航守卫
 router.beforeEach((to,from,next)=>{
   let token = localStorage.getItem("token")
-  console.log(token)
   if(!token && to.path != "/login"){
     return next("/login")
   }
   next()
 })
 
-//将权限管理存到loCalSTORage
-
+//为true时Vue内置的控制台提示就开启
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

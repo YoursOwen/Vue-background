@@ -4,45 +4,44 @@
 
   <div class="home-container">
     <el-container>
-      <el-aside width="200px">
-        <div class="logo"></div>
-         <el-menu
-      default-active="1-1"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b">
-      <el-submenu :index="item.path" v-for="(item,index) in menusList" :key="index">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>{{ item.authName }}</span>
-        </template>
-        <el-menu-item-group>
+   <el-aside width="auto">
+      <div class="logo"></div>
+      <el-menu
+      :router='true'
+      default-active="2" class="el-menu-admin" :collapse="isCollapse" @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        <el-submenu :index="item.path" v-for="item in menusList" :key="item.id">
+          <template slot="title">
+            <i class="el-icon-location"></i>
+            <span>{{item.authName}}</span>
+          </template>
           <el-menu-item :index="menu.path" v-for="menu in item.children" :key="menu.id">
             <i class="el-icon-menu"></i>
-             <span slot="title">{{menu.authName}}</span>
+            <span slot="title">{{menu.authName}}</span>
           </el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-
-
-    </el-menu>
-      </el-aside>
+        </el-submenu>
+      </el-menu>
+    </el-aside>
     <el-container>
       <el-header>Header</el-header>
-        <el-main>Main</el-main>
+        <el-main>
+          <transition mode="out-in"
+                      name="fade"
+          >
+            <router-view></router-view>
+          </transition>
+
+        </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script>
-import {getMenusHandler} from "@/api/index.js"
+import {fetch_Menus} from "@/api/index.js"
 export default {
   data() {
     return {
+      isCollapse: false,
       menusList:[]
     }
   },
@@ -52,7 +51,8 @@ export default {
           message: '恭喜你，登陆成功!',
           type: 'success'
         });
-    getMenusHandler().then(res => {
+    fetch_Menus ().then(res => {
+      // console.log(res.data)
       this.menusList = res.data
     })
   },
@@ -112,5 +112,15 @@ export default {
     color: white;
   }
 }
+.fade-enter-active,
+.fade-leave-active {
+	transition: all .2s ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+	opacity: 0;
+}
+
 </style>
 

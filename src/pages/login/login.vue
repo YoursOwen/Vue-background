@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {postLoginHandler} from '@/api/index.js'
+import {fetch_Login} from '@/api/index.js'
   export default {
     data() {
       return {
@@ -32,7 +32,7 @@ import {postLoginHandler} from '@/api/index.js'
       login() {
         if(this.form.username.trim() === "" || this.form.password.trim() ==="") return this.open3()
 
-        postLoginHandler(this.form).then(res => {
+        fetch_Login(this.form).then(res => {
           console.log(res)
           if(res.meta.status === 200) {
             //将token存储到localStorage
