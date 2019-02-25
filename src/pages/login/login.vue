@@ -37,8 +37,11 @@ import {fetch_Login} from '@/api/index.js'
           if(res.meta.status === 200) {
             //将token存储到localStorage
             localStorage.setItem("token",res.data.token)
-            //登陆成功
-            this.$router.push("home")
+            //这是一个异步操作
+            this.$store.dispatch('getMenus')
+
+            //这是一个同步操作，登陆成功（同步放在这会有一些问题，所以将他放到异步完成后去）
+            // this.$router.push("home")
           }else {
              this.$message({
           showClose: true,

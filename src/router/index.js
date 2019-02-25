@@ -48,6 +48,13 @@ const router = new Router({
     ]}
   ]
 })
-console.log(router)
+//启动路由导航守卫
+router.beforeEach((to,from,next)=>{
+  let token = localStorage.getItem("token")
+  if(!token && to.path != "/login"){
+    return next("/login")
+  }
+  next()
+})
 
 export default router

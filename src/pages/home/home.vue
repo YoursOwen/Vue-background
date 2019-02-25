@@ -9,7 +9,7 @@
       <el-menu
       :router='true'
       default-active="2" class="el-menu-admin" :collapse="isCollapse" @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-        <el-submenu :index="item.path" v-for="item in menusList" :key="item.id">
+        <el-submenu :index="item.path" v-for="item in this.$store.state.Menus" :key="item.id">
           <template slot="title">
             <i class="el-icon-location"></i>
             <span>{{item.authName}}</span>
@@ -50,11 +50,7 @@ export default {
           showClose: true,
           message: '恭喜你，登陆成功!',
           type: 'success'
-        });
-    fetch_Menus ().then(res => {
-      // console.log(res.data)
-      this.menusList = res.data
-    })
+        })
   },
    methods: {
       handleOpen(key, keyPath) {
