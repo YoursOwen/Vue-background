@@ -7,7 +7,7 @@
       <el-aside width="auto">
         <div class="logo"></div>
         <el-menu :router='true'
-                 default-active="2"
+                 default-active="users"
                  class="el-menu-admin"
                  :collapse="isCollapse"
                  @open="handleOpen"
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { fetch_Menus } from "@/api/index.js";
 export default {
   data() {
     return {
@@ -59,6 +60,10 @@ export default {
       message: "恭喜你，登陆成功!",
       type: "success"
     });
+
+    //
+    // this.$router.options.routes[2].children = this.$router.options.routes[2].children.concat(this.$store.getters.routerHandler)
+    // this.$router.addRoutes(this.$router.options.routes)
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -126,4 +131,3 @@ export default {
   opacity: 0;
 }
 </style>
-

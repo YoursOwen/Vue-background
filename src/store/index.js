@@ -8,7 +8,8 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-  Menus:[]
+  //注意Json.parse,数据类型错误的话,v-for会乱渲染
+  Menus:sessionStorage.getItem('Menus') ? JSON.parse(sessionStorage.getItem('Menus')) : []
 }
 const store = new Vuex.Store({
   state,

@@ -45,7 +45,6 @@ export default {
         return this.open3();
 
       fetch_Login(this.form).then(res => {
-        // console.log(res)
         if (res.meta.status === 200) {
           //将token存储到localStorage
           localStorage.setItem("token", res.data.token);
