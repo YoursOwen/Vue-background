@@ -1,32 +1,41 @@
 <template>
 
-<!-- 现在侧边栏是写死了，需要动态获取 -->
+  <!-- 现在侧边栏是写死了，需要动态获取 -->
 
   <div class="home-container">
     <el-container>
-   <el-aside width="auto">
-      <div class="logo"></div>
-      <el-menu
-      :router='true'
-      default-active="2" class="el-menu-admin" :collapse="isCollapse" @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-        <el-submenu :index="item.path" v-for="item in this.$store.state.Menus" :key="item.id">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>{{item.authName}}</span>
-          </template>
-          <el-menu-item :index="menu.path" v-for="menu in item.children" :key="menu.id">
-            <i class="el-icon-menu"></i>
-            <span slot="title">{{menu.authName}}</span>
-          </el-menu-item>
-        </el-submenu>
-      </el-menu>
-    </el-aside>
-    <el-container>
-      <el-header>Header</el-header>
+      <el-aside width="auto">
+        <div class="logo"></div>
+        <el-menu :router='true'
+                 default-active="2"
+                 class="el-menu-admin"
+                 :collapse="isCollapse"
+                 @open="handleOpen"
+                 @close="handleClose"
+                 background-color="#545c64"
+                 text-color="#fff"
+                 active-text-color="#ffd04b">
+          <el-submenu :index="item.path"
+                      v-for="item in this.$store.state.Menus"
+                      :key="item.id">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>{{item.authName}}</span>
+            </template>
+            <el-menu-item :index="menu.path"
+                          v-for="menu in item.children"
+                          :key="menu.id">
+              <i class="el-icon-menu"></i>
+              <span slot="title">{{menu.authName}}</span>
+            </el-menu-item>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
+      <el-container>
+        <el-header>Header</el-header>
         <el-main>
           <transition mode="out-in"
-                      name="fade"
-          >
+                      name="fade">
             <router-view></router-view>
           </transition>
 
@@ -37,36 +46,35 @@
 </template>
 
 <script>
-import {fetch_Menus} from "@/api/index.js"
 export default {
   data() {
     return {
       isCollapse: false,
-      menusList:[]
-    }
+      menusList: []
+    };
   },
   created() {
     this.$message({
-          showClose: true,
-          message: '恭喜你，登陆成功!',
-          type: 'success'
-        })
+      showClose: true,
+      message: "恭喜你，登陆成功!",
+      type: "success"
+    });
   },
-   methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
     }
-}
+  }
+};
 </script>
 
 <style lang="less" scoped>
-.home-container{
+.home-container {
   height: 100%;
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   .el-menu-admin:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
@@ -84,7 +92,7 @@ export default {
     background-color: #009688;
   }
   .logo {
-    height:60px;
+    height: 60px;
     background: url("../../assets/logo.png");
     background-size: cover;
     background-color: white;
@@ -104,19 +112,18 @@ export default {
     font-size: 28px;
     color: white;
   }
-  .welcome, {
+  .welcome {
     color: white;
   }
 }
 .fade-enter-active,
 .fade-leave-active {
-	transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 .fade-enter,
 .fade-leave-active {
-	opacity: 0;
+  opacity: 0;
 }
-
 </style>
 
